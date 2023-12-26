@@ -5,7 +5,7 @@ import { connectDB } from './db.js'
 async function main() {
   try {
     await connectDB()
-    app.listen(PORT, HOST, () => {
+    app.listen(PORT, () => {
       console.log(`App runing on ${PORT}`)
     })
   } catch (error) {
