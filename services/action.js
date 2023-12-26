@@ -21,17 +21,14 @@ export const getActionByEmail = async (email) => {
 
 export const updateAction = async (email, actionn) => {
   try {
-    const existingAction = await Action.findOne({
-      email,
-      createdAt: { $gte: new Date() },
-    });
+    const existingAction = await getActionsByDate(new Date(), email);
 
     if (!existingAction) {
       return null;
     }
 
-    existingAction.action = await defineAction(actionn);
-    const result = await existingAction.save();
+    existingAction[0].action = await defineAction(actionn);
+    const result = await existingAction[0].save();
 
     return result;
   } catch (error) {
