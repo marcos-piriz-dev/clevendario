@@ -55,7 +55,6 @@ export const login = async (req, res) => {
     }
 
     const checkPassword = await compare(email, password, user.password)
-
     if (!checkPassword) {
       return res.status(409).json({
         message: 'Invalid password'

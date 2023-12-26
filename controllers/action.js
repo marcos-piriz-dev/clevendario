@@ -12,7 +12,7 @@ export const create = async (req, res) => {
 
   const today = new Date()
   const actions = await getActionsByDate(today, email)
-  console.log(actions)
+
   if (actions.length > 0) {
     return res.status(400).json({
       message: 'You have already registered an action today'
@@ -40,10 +40,8 @@ export const create = async (req, res) => {
     const result = await newAction.save()
     return res.status(200).json(result)
   } catch (error) {
-
     console.error(error)
     return res.status(500).json({message: 'Internal Server Error'})
-
   }
 }
 
@@ -83,36 +81,30 @@ export const getByEmail = async (req, res) => {
   }
 }
 
-
 //Update action
-
 export const updateActionController = async (req, res) => {
-  const { email } = req.params;
-  const { action } = req.body;
+  const { email } = req.params
+  const { action } = req.body
 
   try {
-    const user = await getUserByEmail(email);
+    const user = await getUserByEmail(email)
 
     if (!user) {
       return res.status(404).json({
         message: 'User not found'
-      });
+      })
     }
 
-
-    const result = await updateAction(email, action);
-
-
+    const result = await updateAction(email, action)
     if (!result) {
       return res.status(404).json({
         message: 'No existing action found for the specified email and date'
-      });
+      })
     }
 
-    return res.status(200).json(result);
+    return res.status(200).json(result)
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'Internal Server Error' });
+    console.error(error)
+    return res.status(500).json({ message: 'Internal Server Error' })
   }
-};
-
+}

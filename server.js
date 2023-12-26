@@ -5,11 +5,9 @@ import { connectDB } from './db.js'
 async function main() {
   try {
     await connectDB()
-    const HOST = '0.0.0.0';
     app.listen(PORT, HOST, () => {
-      console.log(`App listening on http://${HOST}:${PORT}`);
-    });
-    
+      console.log(`App runing on ${PORT}`)
+    })
   } catch (error) {
     console.error(error)
   }

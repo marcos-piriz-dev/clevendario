@@ -23,8 +23,6 @@ router.get('/action/getAll', getAllActions)
 router.get('/action/getByEmail', getByEmail)
 
 // action update
-router.put('/action/update/:email', updateActionController);
-
-
+router.put('/action/update/:email', updateActionController)
 
 export default router
