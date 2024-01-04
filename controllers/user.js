@@ -1,7 +1,7 @@
 import User from '../models/user.js'
 import { encrypt, compare } from '../services/bcrypt.js'
 import { defineRole } from '../services/role.js'
-import { getUserByEmail } from '../services/user.js'
+import { getUserByEmail,getAllUsers} from '../services/user.js'
 import { createAccessToken } from '../services/jwt.js'
 
 export const register = async (req, res) => {
@@ -75,5 +75,17 @@ export const login = async (req, res) => {
   } catch (error) {
     console.error(error)
     res.status(500).json({message: 'Internal Server Error'})
+  }
+}
+
+export const getUsers = async (req,res) => {
+  try{
+    const users = await getAllUsers()
+    if (users != undefined){
+        return res.status(200).json({users})
+    }
+  }
+  catch(error){
+    return res.status(409).json({message: 'no pudo obtener resultado'})
   }
 }
