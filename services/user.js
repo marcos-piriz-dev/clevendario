@@ -5,5 +5,5 @@ export const getUserByEmail = async (email) => {
 }
 
 export const getAllUsers = async () => {
-  return await User.find({})
+  return await User.find({role:"DEV"})
 }
